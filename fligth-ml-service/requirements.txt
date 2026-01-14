@@ -1,0 +1,9 @@
+fastapi==0.124.4
+uvicorn==0.38.0
+pydantic==2.12.5
+numpy==2.3.5
+pandas==2.3.3
+scikit-learn==1.6.1
+scipy==1.16.3
+joblib==1.5.3
+category_encoders
