@@ -1,53 +1,99 @@
-# anac-vra-2024-hackathon
+# ✈️ FlightOnTime (anac-vra-2024-hackathon)
 Dataset de voos ANAC + análise preditiva de atrasos (hackathon 2025 Alura/ Oracle Next Education)
 
-✈️ FlightOnTime — Previsão de Atrasos de Voos
+### Previsão de Atrasos de Voos com Ciência de Dados
 
-📌 Descrição  
-O FlightOnTime é um MVP de ciência de dados desenvolvido para prever a probabilidade de atraso de um voo **antes da decolagem**, utilizando exclusivamente informações disponíveis no planejamento do voo.
+## 🎯 Objetivo do Projeto
 
-O projeto foi desenvolvido com foco em **recall da classe atraso**, priorizando a detecção antecipada de riscos operacionais.
+Aplicar **Ciência de Dados na Aviação**, com foco na **antecipação de atrasos de voo**, por meio de um modelo preditivo confiável e integrado a uma API REST.
 
----
-
-🎯 Objetivo do Modelo
-
-Classificar voos como:
-
-- **0** → Provavelmente pontual  
-- **1** → Provavelmente atrasado  
+O objetivo final é permitir que sistemas e usuários consultem, em tempo real, o **status provável de um voo (Pontual ou Atrasado)** e sua **probabilidade associada**.
 
 ---
 
-🧠 Modelagem
+## 🧠 Visão Geral da Solução
 
-- Logistic Regression  
-- Pipeline com ColumnTransformer  
-- One-Hot Encoding para variáveis categóricas  
-- Balanceamento de classes (`class_weight='balanced'`)  
-- Ajuste de threshold (0.4)  
+O projeto é dividido em duas frentes principais:
 
-O modelo prioriza **Recall da classe atraso**, alcançando aproximadamente **84% de detecção de atrasos**.
+- **Data Science**  
+  Responsável por explorar os dados, criar features relevantes, treinar e validar o modelo preditivo e definir o threshold orientado ao negócio.
 
----
-
-📊 Métricas Principais (Classe Atraso)
-
-- Recall: ~84%  
-- F1-score: ~0.34  
-- Accuracy: reduzida (esperada devido ao desbalanceamento)
+- **Back-End**  
+  Responsável por expor uma API REST que consome o modelo preditivo e retorna a previsão em tempo real.
 
 ---
 
-📁 Estrutura de Arquivos Gerados
+## 🔁 Arquitetura da Solução
 
-```text
-├── notebooks/
-│   └── 02_Modelo_Preditivo_FlightOnTime_v3.ipynb
-├── models/
-│   └── model_flightontime.pkl
-├── app.py
-├── requirements.txt
-├── MODEL_EVALUATION.md
-└── README.md
+[ Cliente / Front-end ]
+|
+v
+POST /predict
+|
+v
+[ API Java (Spring Boot) ]
+|
+| (OpenFeign)
+v
+[ Microsserviço Python ]
+|
+| (Modelo ML + Threshold fixo)
+v
+Probabilidade + Status
+|
+v
+[ API Java ]
+|
+v
+[ Cliente / Front-end ]
 
+---
+
+
+---
+
+## 📊 Modelo Preditivo (Resumo Executivo)
+
+- Modelo escolhido: **Random Forest**
+- Métrica foco: **Recall da classe “Atrasado”**
+- Recall final alcançado: **93%**
+- Threshold fixado no modelo: **0.40**
+- Saída do modelo:
+  - Status: `PONTUAL` ou `ATRASADO`
+  - Probabilidade associada (0 a 1)
+
+O threshold foi **definido com base em ajustes**, evitando decisões arbitrárias na camada de Back-End.
+O time de Back-end faz esse input na estrutura.
+
+---
+
+## 📦 Entregáveis
+
+- Notebooks de Data Science (ETL, EDA e Modelagem)
+- Modelo serializado (`.pkl`)
+- API REST funcional
+- Documentação mínima
+- Demonstração via endpoint `/predict`
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+### Data Science
+- Python
+- Pandas, NumPy
+- scikit-learn, CatBoost
+- Jupyter / Google Colab
+
+### Back-End
+- Java
+- Spring Boot
+- OpenFeign
+- API REST
+
+---
+
+## 👥 Time
+
+Projeto desenvolvido de forma colaborativa entre as equipes de **Data Science** e **Back-End**, com integração contínua entre modelagem, arquitetura e entrega.
+>>>>>>> 7347c9b78a0b82566c12f440b9874f2a27b96864
