@@ -96,4 +96,3 @@ O time de Back-end faz esse input na estrutura.
 ## 👥 Time
 
 Projeto desenvolvido de forma colaborativa entre as equipes de **Data Science** e **Back-End**, com integração contínua entre modelagem, arquitetura e entrega.
->>>>>>> 7347c9b78a0b82566c12f440b9874f2a27b96864
